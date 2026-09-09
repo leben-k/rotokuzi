@@ -47,7 +47,9 @@ def save_loto_data(name, data):
 
 
 def next_draw_date(weekdays, from_date=None):
-    """指定した曜日(0=月,...,6=日)のうち直近の未来日を返す。今日が該当曜日ならその日を返す。"""
+    """指定した曜日のうち直近の未来日を返す。今日が該当曜日ならその日を返す。
+    weekdays は Python の date.weekday() 基準（月曜=0, 火曜=1, ... 日曜=6）。
+    """
     base = from_date or datetime.now()
     for offset in range(0, 8):
         candidate = base + timedelta(days=offset)

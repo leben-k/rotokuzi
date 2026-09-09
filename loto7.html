@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ロト7 予測数字と的中履歴 | ロトの気まぐれ予報</title>
-<meta name="description" content="ロト7の次回予測数字14個を独自のゆる～い理由つきで公開。過去の予測と当せん番号の答え合わせも掲載。">
+<title>ロト7 当せん予測数字と的中履歴 | ロト当選予報</title>
+<meta name="description" content="ロト7の次回当せん予測数字14個を独自のゆる～い理由つきで公開。過去の予測と当せん番号の答え合わせも掲載。">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -15,7 +15,7 @@
     <a class="brand" href="index.html">
       <img class="brand-mark" src="assets/logo.svg" alt="">
       <span>
-        <span class="brand-name">ロトの気まぐれ予報</span>
+        <span class="brand-name">ロト当選予報</span>
         <span class="brand-tag">統計的根拠はゼロ、当たったら運が良かっただけです</span>
       </span>
     </a>
@@ -24,7 +24,6 @@
       <a href="loto7.html" aria-current="page">ロト7</a>
       <a href="loto6.html">ロト6</a>
       <a href="miniloto.html">ミニロト</a>
-      <a href="contact.html">お問い合わせ</a>
     </nav>
   </div>
 </header>
@@ -32,27 +31,39 @@
 <main class="container">
 
   <section class="hero" style="text-align:left; padding-top:10px;">
-    <h1>ロト7 予測数字</h1>
-    <p>1〜37の中から本数字7個を当てるロト7。当サイトでは毎週金曜の抽せん前に、14個の予測数字を独自の理由つきで公開します。</p>
+    <h1>ロト7 当せん予測数字</h1>
+    <p class="hero-shout">…と言いつつ、正直、当たらないかもしれません。</p>
+    <p>1〜37の中から本数字7個を当てるロト7。当サイトでは毎週金曜の抽せん前に、14個の当せん予測数字を独自の理由つきで公開します。</p>
+    <img class="hero-illustration" src="assets/hero-loto7.svg" alt="ロト7の抽せん球イラスト">
   </section>
 
   <section class="section">
-    <h2 class="section-title"><span class="dot"></span>次回の予測数字</h2>
+    <h2 class="section-title"><span class="dot"></span>次回の当せん予測数字</h2>
     <div class="prediction-panel" id="current-prediction">
       <p class="loading">読み込み中…</p>
     </div>
   </section>
 
   <section class="section">
-    <div class="ad-block-title">🎁 ロト7が当せんしたら、こんなご褒美はいかが？</div>
+    <h2 class="section-title"><span class="dot"></span>ロト7の当せん確率</h2>
+    <div id="probability-panel"><p class="loading">読み込み中…</p></div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><span class="dot"></span>実際の過去の当せん番号（直近10回）</h2>
+    <div id="actual-history-list" class="actual-history-list"><p class="loading">読み込み中…</p></div>
+  </section>
+
+  <section class="section">
+    <div class="ad-block-title"><img class="ad-block-icon" src="assets/icon-gift.svg" alt="">ロト7が当せんしたら、こんなご褒美はいかが？</div>
     <div id="ads-win" class="ad-grid"><p class="loading">読み込み中…</p></div>
-    <div class="ad-block-title">☕ 当せんしなくても、気分転換に</div>
+    <div class="ad-block-title"><img class="ad-block-icon" src="assets/icon-coffee.svg" alt="">当せんしなくても、気分転換に</div>
     <div id="ads-nowin" class="ad-grid"><p class="loading">読み込み中…</p></div>
     <p class="ad-disclaimer">上記は楽天市場のアフィリエイトリンクです。リンク経由の購入により当サイトに紹介料が入る場合があります。</p>
   </section>
 
   <section class="section">
-    <h2 class="section-title"><span class="dot"></span>過去の予測と答え合わせ</h2>
+    <h2 class="section-title"><img class="section-icon" src="assets/icon-trophy.svg" alt="">過去の予測と答え合わせ</h2>
     <div id="history-list" class="history-list">
       <p class="loading">読み込み中…</p>
     </div>
@@ -63,9 +74,13 @@
 <footer class="site-footer">
   <div class="container">
     <p class="footer-disclaimer">
-      予測数字は統計的根拠のないエンタメコンテンツです。当せんを保証するものではありません。
+      当せん予測数字は統計的根拠のないエンタメコンテンツです。当せんを保証するものではありません。
     </p>
     <div class="footer-links">
+      <a href="index.html">トップ</a>
+      <a href="loto7.html">ロト7</a>
+      <a href="loto6.html">ロト6</a>
+      <a href="miniloto.html">ミニロト</a>
       <a href="contact.html">お問い合わせ</a>
     </div>
   </div>

@@ -1,0 +1,7 @@
+<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ギフトのアイコン">
+  <rect x="10" y="26" width="40" height="26" rx="3" fill="#ffc93c" stroke="#0d1e30" stroke-width="2"/>
+  <rect x="10" y="26" width="40" height="9" fill="#ffe08a" stroke="#0d1e30" stroke-width="2"/>
+  <rect x="26" y="10" width="8" height="42" fill="#ff8fa3" stroke="#0d1e30" stroke-width="2"/>
+  <path d="M30 12 C18 12 16 2 26 3 C33 4 30 12 30 12 Z" fill="#ff8fa3" stroke="#0d1e30" stroke-width="1.6"/>
+  <path d="M30 12 C42 12 44 2 34 3 C27 4 30 12 30 12 Z" fill="#ff8fa3" stroke="#0d1e30" stroke-width="1.6"/>
+</svg>

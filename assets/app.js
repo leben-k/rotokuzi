@@ -1,15 +1,7 @@
 // ===== 共通設定 =====
-const RAKUTEN_AFFILIATE_ID = "57538e52.95638340.57538e53.f4632405";
-
-function buildAffiliateLink(productUrl) {
-  return (
-    "https://hb.afl.rakuten.co.jp/ichiba/" +
-    RAKUTEN_AFFILIATE_ID +
-    "/?pc=" +
-    encodeURIComponent(productUrl) +
-    "&link_type=hybrid_url"
-  );
-}
+// 楽天アフィリエイトの規約に沿い、リンクは「ソースをコピー」で
+// 取得した公式HTMLスニペットをそのまま data/ads.json に格納し、
+// ここでは一切加工せずページに差し込む方式にしています。
 
 async function fetchJSON(path) {
   const res = await fetch(path, { cache: "no-store" });
@@ -86,6 +78,8 @@ async function renderLotoPage(key) {
 
   renderCurrentPrediction(cfg, data);
   renderHistory(cfg, data);
+  renderProbability(cfg);
+  renderActualHistory(key);
 }
 
 function renderCurrentPrediction(cfg, data) {
@@ -94,7 +88,7 @@ function renderCurrentPrediction(cfg, data) {
   const latest = data.predictions[0];
 
   if (!latest) {
-    el.innerHTML = `<p class="empty-state">まだ予測が生成されていません。抽せん日の朝に自動更新されます。</p>`;
+    el.innerHTML = `<p class="empty-state">まだ当せん予測数字が生成されていません。抽せん日の朝に自動更新されます。</p>`;
     return;
   }
 
@@ -102,7 +96,7 @@ function renderCurrentPrediction(cfg, data) {
     <div class="prediction-meta">
       <span><strong>第${latest.round}回</strong> 抽せん予定</span>
       <span>抽せん日：${formatDate(latest.drawDate)}</span>
-      <span>予測数字：${latest.numbers.length}個（本数字${cfg.pickCount}個を予測）</span>
+      <span>当せん予測数字：${latest.numbers.length}個（本数字${cfg.pickCount}個を予測）</span>
     </div>
     <div class="ball-grid">
       ${latest.numbers
@@ -115,7 +109,56 @@ function renderCurrentPrediction(cfg, data) {
         )
         .join("")}
     </div>
+    <p class="pending-note">この回の答え合わせは、抽せん日翌日以降に「過去の予測と答え合わせ」欄に反映されます。今しばらくお待ちください。</p>
   `;
+}
+
+// ===== 当せん確率 =====
+function renderProbability(cfg) {
+  const el = document.getElementById("probability-panel");
+  if (!el) return;
+  el.innerHTML = `
+    <div class="probability-panel">
+      <div class="probability-figure">
+        <span class="probability-value">${cfg.jackpotProbabilityLabel}</span>
+        <span class="probability-label">1等の当せん確率</span>
+      </div>
+      <p class="probability-note">
+        1〜${cfg.range[1]}の数字から${cfg.pickCount}個を選ぶ組み合わせは全部で${cfg.totalCombinations.toLocaleString()}通り。
+        1等はそのうちの1通りだけです。当サイトの予測数字を増やしても、この確率そのものは変わりません（統計的な話です）。
+      </p>
+    </div>
+  `;
+}
+
+// ===== 実際の過去当せん番号 =====
+async function renderActualHistory(key) {
+  const el = document.getElementById("actual-history-list");
+  if (!el) return;
+  const all = await fetchJSON("data/actual_history.json");
+  const list = all[key] || [];
+
+  if (list.length === 0) {
+    el.innerHTML = `<p class="empty-state">データを準備中です。</p>`;
+    return;
+  }
+
+  el.innerHTML = list
+    .map(
+      (r) => `
+      <div class="actual-history-item">
+        <div class="actual-history-head">
+          <span class="history-round">第${r.round}回</span>
+          <span class="history-date">${formatDate(r.drawDate)}</span>
+        </div>
+        <div class="ball-row">
+          ${r.main.map((n) => ballHTML(n, { small: true })).join("")}
+          ${(r.bonus || []).map((n) => ballHTML(n, { small: true, bonus: true })).join("")}
+        </div>
+      </div>
+    `
+    )
+    .join("");
 }
 
 function renderHistory(cfg, data) {
@@ -163,7 +206,7 @@ function renderHistory(cfg, data) {
     .join("");
 }
 
-// ===== 広告 =====
+// ===== 広告（楽天公式スニペットをそのまま挿入） =====
 async function renderAds() {
   const winEl = document.getElementById("ads-win");
   const nowinEl = document.getElementById("ads-nowin");
@@ -172,20 +215,19 @@ async function renderAds() {
   const data = await fetchJSON("data/ads.json");
   const items = data.items || [];
 
-  const cardHTML = (item) => `
-    <a class="ad-card" href="${buildAffiliateLink(item.productUrl)}" target="_blank" rel="noopener sponsored">
-      <img src="${item.image}" alt="${item.title}" loading="lazy">
-      <div class="ad-card-body">
-        <div class="ad-title">${item.title}</div>
-        ${item.price ? `<div class="ad-price">${item.price}</div>` : ""}
-      </div>
-    </a>
-  `;
+  const wrap = (item) => `<div class="ad-card-official">${item.html}</div>`;
+
+  const winItems = items.filter((i) => i.category === "win");
+  const nowinItems = items.filter((i) => i.category === "nowin");
 
   if (winEl) {
-    winEl.innerHTML = items.filter((i) => i.category === "win").map(cardHTML).join("");
+    winEl.innerHTML = winItems.length
+      ? winItems.map(wrap).join("")
+      : `<p class="empty-state">準備中です。追加され次第ここに表示されます。</p>`;
   }
   if (nowinEl) {
-    nowinEl.innerHTML = items.filter((i) => i.category === "nowin").map(cardHTML).join("");
+    nowinEl.innerHTML = nowinItems.length
+      ? nowinItems.map(wrap).join("")
+      : `<p class="empty-state">準備中です。追加され次第ここに表示されます。</p>`;
   }
 }

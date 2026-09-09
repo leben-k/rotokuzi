@@ -1,33 +1,9 @@
 {
-  "_readme": "each entry: category は 'win'（当せんしたら）か 'nowin'（当せんしなくても）。productUrl は楽天市場の商品ページURL（https://item.rakuten.co.jp/... の通常URLでOK、アフィリエイトIDはapp.js側で自動付与されます）。image は商品画像URL。差し替えたら十分です。",
+  "_readme": "楽天アフィリエイトの規約により、リンクは楽天の管理画面で商品ごとに『ソースをコピー』して取得したHTMLコードをそのまま『html』に貼り付けてください（改変不可。文字色・画像サイズ・リンク先の変更は規約違反になります）。category は 'win'（当せんしたら）か 'nowin'（当せんしなくても）。",
   "items": [
     {
       "category": "win",
-      "title": "ご褒美に温泉旅行券",
-      "price": "",
-      "image": "https://placehold.co/400x400/EAF6FB/14293D?text=Rakuten+Travel",
-      "productUrl": "https://travel.rakuten.co.jp/"
-    },
-    {
-      "category": "win",
-      "title": "自分へのご褒美スイーツセット",
-      "price": "",
-      "image": "https://placehold.co/400x400/EAF6FB/14293D?text=Sweets",
-      "productUrl": "https://www.rakuten.co.jp/"
-    },
-    {
-      "category": "nowin",
-      "title": "気分転換にコーヒー豆",
-      "price": "",
-      "image": "https://placehold.co/400x400/EAF6FB/14293D?text=Coffee",
-      "productUrl": "https://www.rakuten.co.jp/"
-    },
-    {
-      "category": "nowin",
-      "title": "来週に向けてお守りグッズ",
-      "price": "",
-      "image": "https://placehold.co/400x400/EAF6FB/14293D?text=Lucky+Charm",
-      "productUrl": "https://www.rakuten.co.jp/"
+      "html": "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td><div style=\"border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:504px;margin:0px;padding:5px;text-align:center;overflow:hidden;\"><table><tr><td style=\"width:240px\"><a href=\"https://hb.afl.rakuten.co.jp/ichiba/57538e52.95638340.57538e53.f4632405/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcanow%2Fhope-melamine-bed-st%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D\" target=\"_blank\" rel=\"nofollow sponsored noopener\" style=\"word-wrap:break-word;\"><img src=\"https://hbb.afl.rakuten.co.jp/hgb/57538e52.95638340.57538e53.f4632405/?me_id=1368221&item_id=10000406&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fcanow%2Fcabinet%2F08014635%2F10814014%2F20250624153708.jpg%3F_ex%3D240x240&s=240x240&t=picttext\" border=\"0\" style=\"margin:2px\" alt=\"[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]\" title=\"[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]\"></a></td><td style=\"vertical-align:top;width:248px;display: block;\"><p style=\"font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word\"><a href=\"https://hb.afl.rakuten.co.jp/ichiba/57538e52.95638340.57538e53.f4632405/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcanow%2Fhope-melamine-bed-st%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D\" target=\"_blank\" rel=\"nofollow sponsored noopener\" style=\"word-wrap:break-word;\">【4日20時〜P5倍★最大2000円クーポン】ベッド シングルベッド すのこベッド ホープ 3段高さ調節 宮棚あり 2口コンセント付 ベッドフレーム 収納 通気性 低圧メラミン 傷に強い ベッド シングル 宮 北欧 ブラウン ナチュラル グレー</a><br><span>価格：9,900円〜（税込、送料無料)</span> <span style=\"color:#BBB\">(2026/9/9時点)</span></p><div style=\"margin:10px;\"><a href=\"https://hb.afl.rakuten.co.jp/ichiba/57538e52.95638340.57538e53.f4632405/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcanow%2Fhope-melamine-bed-st%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D\" target=\"_blank\" rel=\"nofollow sponsored noopener\" style=\"word-wrap:break-word;\"><img src=\"https://static.affiliate.rakuten.co.jp/makelink/rl.svg\" style=\"float:left;max-height:27px;width:auto;margin-top:0\"></a><a href=\"https://hb.afl.rakuten.co.jp/ichiba/57538e52.95638340.57538e53.f4632405/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcanow%2Fhope-melamine-bed-st%2F%3Fscid%3Daf_pc_bbtn&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ==\" target=\"_blank\" rel=\"nofollow sponsored noopener\" style=\"word-wrap:break-word;\"><div style=\"float:right;width:41%;height:27px;background-color:#bf0000;color:#fff!important;font-size:12px;font-weight:500;line-height:27px;margin-left:1px;padding: 0 12px;border-radius:16px;cursor:pointer;text-align:center;\">楽天で購入</div></a></div></td></tr></table></div><br><p style=\"color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word\"></p></td></tr></table>"
     }
   ]
 }

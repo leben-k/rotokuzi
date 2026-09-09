@@ -1,0 +1,6 @@
+<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="お守りのアイコン">
+  <path d="M16 20 h28 l-3 26 a4 4 0 0 1 -4 3.6 h-14 a4 4 0 0 1 -4 -3.6 z" fill="#ff8fa3" stroke="#0d1e30" stroke-width="2.2"/>
+  <rect x="14" y="14" width="32" height="9" rx="3" fill="#ffffff" stroke="#0d1e30" stroke-width="2.2"/>
+  <text x="30" y="21" font-family="'M PLUS Rounded 1c',sans-serif" font-size="8" font-weight="800" text-anchor="middle" fill="#0d1e30">運</text>
+  <path d="M30 23 v26" stroke="#ffe08a" stroke-width="2"/>
+</svg>

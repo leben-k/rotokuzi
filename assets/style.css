@@ -4,19 +4,19 @@
   --bg: #eaf6fb;
   --bg-deep: #d8f0f8;
   --card: #ffffff;
-  --ink: #14293d;
-  --ink-soft: #3d5468;
+  --ink: #0d1e30;
+  --ink-soft: #274257;
   --line: #cfe7f0;
 
-  --loto7: #7c5cbf;
-  --loto7-soft: #efe9fb;
-  --loto6: #f2994a;
-  --loto6-soft: #fff2e3;
-  --mini: #2fae66;
-  --mini-soft: #e5f7ed;
+  --loto7: #6a3fc7;
+  --loto7-soft: #ece3fb;
+  --loto6: #e0790f;
+  --loto6-soft: #ffedd6;
+  --mini: #1c9457;
+  --mini-soft: #d7f4e3;
 
   --gold: #ffc93c;
-  --gold-ink: #6b4c00;
+  --gold-ink: #5a3e00;
 
   --radius-lg: 22px;
   --radius-md: 14px;
@@ -131,6 +131,10 @@ a { color: inherit; }
   margin: 18px auto 6px;
   display: block;
 }
+.page .hero-illustration {
+  width: min(420px, 85%);
+  margin: 14px 0 4px;
+}
 
 /* ---------- Loto summary cards (index) ---------- */
 .loto-grid {
@@ -149,13 +153,14 @@ a { color: inherit; }
   display: flex;
   flex-direction: column;
   gap: 12px;
-  border-top: 6px solid var(--accent, var(--loto7));
+  border: 2px solid var(--accent-soft, var(--line));
+  border-top: 10px solid var(--accent, var(--loto7));
   transition: transform 0.15s ease;
 }
 .loto-card:hover { transform: translateY(-3px); }
-.loto-card.c-loto7 { --accent: var(--loto7); }
-.loto-card.c-loto6 { --accent: var(--loto6); }
-.loto-card.c-mini  { --accent: var(--mini); }
+.loto-card.c-loto7 { --accent: var(--loto7); --accent-soft: var(--loto7-soft); }
+.loto-card.c-loto6 { --accent: var(--loto6); --accent-soft: var(--loto6-soft); }
+.loto-card.c-mini  { --accent: var(--mini); --accent-soft: var(--mini-soft); }
 
 .loto-card-head {
   display: flex;
@@ -192,34 +197,35 @@ a { color: inherit; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   border-radius: var(--radius-ball);
-  background: var(--accent, var(--loto7-soft));
-  color: var(--ink);
-  font-weight: 700;
-  font-size: 0.95rem;
-  border: 2px solid rgba(255,255,255,0.6);
-  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.08), 0 2px 4px rgba(20,41,61,0.12);
+  background: var(--accent, var(--loto7));
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 1.05rem;
+  border: 2.5px solid rgba(13, 30, 48, 0.25);
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15), 0 2px 5px rgba(20,41,61,0.18);
   position: relative;
 }
-.ball.small { width: 30px; height: 30px; font-size: 0.78rem; }
+.ball.small { width: 34px; height: 34px; font-size: 0.88rem; }
 .ball.matched {
   background: var(--gold);
   color: var(--gold-ink);
-  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.12), 0 0 0 3px rgba(255,201,60,0.35);
+  border-color: #b8860b;
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15), 0 0 0 4px rgba(255,201,60,0.4);
 }
 .ball.bonus-ball {
-  background: transparent;
-  border: 2px dashed var(--ink-soft);
-  color: var(--ink-soft);
+  background: #ffffff;
+  border: 2.5px dashed var(--ink-soft);
+  color: var(--ink);
 }
 
 .page.loto7 { --accent: var(--loto7); --accent-soft: var(--loto7-soft); }
 .page.loto6 { --accent: var(--loto6); --accent-soft: var(--loto6-soft); }
 .page.miniloto { --accent: var(--mini); --accent-soft: var(--mini-soft); }
-.page .ball { background: var(--accent-soft); }
-.page .ball.matched { background: var(--gold); }
+.page .ball { background: var(--accent); }
+.page .ball.matched { background: var(--gold); color: var(--gold-ink); }
 
 /* ---------- Prediction section ---------- */
 .section {
@@ -241,6 +247,8 @@ a { color: inherit; }
   border-radius: var(--radius-lg);
   padding: 26px;
   box-shadow: var(--shadow);
+  border: 2px solid var(--accent-soft);
+  border-top: 8px solid var(--accent);
 }
 .prediction-meta {
   display: flex;
@@ -267,10 +275,90 @@ a { color: inherit; }
   width: 92px;
 }
 .ball-reason {
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   color: var(--ink-soft);
+  font-weight: 500;
   text-align: center;
   line-height: 1.4;
+}
+.pending-note {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+/* ---------- Probability panel ---------- */
+.probability-panel {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 22px 26px;
+  box-shadow: var(--shadow);
+  border: 2px solid var(--accent-soft);
+  border-top: 8px solid var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.probability-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 160px;
+  padding: 10px 18px;
+  background: var(--accent-soft);
+  border-radius: var(--radius-md);
+}
+.probability-value {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: var(--accent);
+}
+.probability-label {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  font-weight: 700;
+  margin-top: 2px;
+}
+.probability-note {
+  flex: 1;
+  min-width: 220px;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* ---------- Actual history (past winning numbers) ---------- */
+.actual-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.actual-history-item {
+  background: var(--card);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  box-shadow: var(--shadow);
+  border: 2px solid var(--accent-soft, var(--line));
+}
+.actual-history-head {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+/* ---------- Hero shout headline ---------- */
+.hero-shout {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.15rem, 3vw, 1.55rem);
+  color: var(--loto6);
+  margin: 4px 0 16px;
 }
 
 /* ---------- History table ---------- */
@@ -280,6 +368,8 @@ a { color: inherit; }
   border-radius: var(--radius-md);
   padding: 16px 18px;
   box-shadow: var(--shadow);
+  border: 2px solid var(--accent-soft, var(--line));
+  border-left: 8px solid var(--accent, var(--loto7));
 }
 .history-item-head {
   display: flex;
@@ -318,44 +408,26 @@ a { color: inherit; }
 
 /* ---------- Ads ---------- */
 .ad-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 16px;
 }
-.ad-card {
-  background: var(--card);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  text-decoration: none;
-  color: var(--ink);
-  display: flex;
-  flex-direction: column;
+.ad-card-official {
+  max-width: 100%;
+  overflow-x: auto;
 }
-.ad-card img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  background: var(--bg-deep);
-}
-.ad-card-body { padding: 12px 14px 16px; }
-.ad-card-body .ad-title {
-  font-weight: 700;
-  font-size: 0.9rem;
-  margin-bottom: 4px;
-}
-.ad-card-body .ad-price {
-  font-size: 0.85rem;
-  color: var(--ink-soft);
-}
+.ad-card-official table { max-width: 100%; }
 .ad-block-title {
-  font-size: 1.02rem;
-  font-weight: 700;
+  font-size: 1.05rem;
+  font-weight: 800;
   margin: 26px 0 12px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  color: var(--ink);
 }
+.ad-block-icon { width: 32px; height: 32px; }
+.section-icon { width: 30px; height: 30px; }
 .ad-disclaimer {
   font-size: 0.72rem;
   color: var(--ink-soft);
