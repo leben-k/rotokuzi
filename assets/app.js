@@ -215,7 +215,15 @@ function renderHistory(cfg, data) {
     .join("");
 }
 
-// ===== 広告（楽天公式スニペットをそのまま挿入） =====
+// ===== コピーライト（自動更新） =====
+function renderCopyright() {
+  const el = document.getElementById("copyright");
+  if (!el) return;
+  const startYear = 2026;
+  const currentYear = new Date().getFullYear();
+  const yearLabel = currentYear > startYear ? `${startYear}–${currentYear}` : `${startYear}`;
+  el.textContent = `© ${yearLabel} ロト当選予報`;
+}
 async function renderAds(pageKey) {
   const winEl = document.getElementById("ads-win");
   const nowinEl = document.getElementById("ads-nowin");
