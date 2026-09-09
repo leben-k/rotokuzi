@@ -1,0 +1,33 @@
+{
+  "_readme": "each entry: category は 'win'（当せんしたら）か 'nowin'（当せんしなくても）。productUrl は楽天市場の商品ページURL（https://item.rakuten.co.jp/... の通常URLでOK、アフィリエイトIDはapp.js側で自動付与されます）。image は商品画像URL。差し替えたら十分です。",
+  "items": [
+    {
+      "category": "win",
+      "title": "ご褒美に温泉旅行券",
+      "price": "",
+      "image": "https://placehold.co/400x400/EAF6FB/14293D?text=Rakuten+Travel",
+      "productUrl": "https://travel.rakuten.co.jp/"
+    },
+    {
+      "category": "win",
+      "title": "自分へのご褒美スイーツセット",
+      "price": "",
+      "image": "https://placehold.co/400x400/EAF6FB/14293D?text=Sweets",
+      "productUrl": "https://www.rakuten.co.jp/"
+    },
+    {
+      "category": "nowin",
+      "title": "気分転換にコーヒー豆",
+      "price": "",
+      "image": "https://placehold.co/400x400/EAF6FB/14293D?text=Coffee",
+      "productUrl": "https://www.rakuten.co.jp/"
+    },
+    {
+      "category": "nowin",
+      "title": "来週に向けてお守りグッズ",
+      "price": "",
+      "image": "https://placehold.co/400x400/EAF6FB/14293D?text=Lucky+Charm",
+      "productUrl": "https://www.rakuten.co.jp/"
+    }
+  ]
+}

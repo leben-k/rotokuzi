@@ -1,0 +1,38 @@
+{
+  "loto7": {
+    "name": "ロト7",
+    "nameEn": "loto7",
+    "range": [1, 37],
+    "pickCount": 7,
+    "predictCount": 14,
+    "drawWeekdays": [5],
+    "color": "purple",
+    "lastRound": 693,
+    "lastDrawDate": "2026-09-04",
+    "note": "抽せん日は毎週金曜日。round番号は初期値のため、公式サイトの最新回号と一致しているか一度確認してください。"
+  },
+  "loto6": {
+    "name": "ロト6",
+    "nameEn": "loto6",
+    "range": [1, 43],
+    "pickCount": 6,
+    "predictCount": 12,
+    "drawWeekdays": [1, 4],
+    "color": "orange",
+    "lastRound": 2135,
+    "lastDrawDate": "2026-09-07",
+    "note": "抽せん日は毎週月曜・木曜。round番号は初期値のため、公式サイトの最新回号と一致しているか一度確認してください。"
+  },
+  "miniloto": {
+    "name": "ミニロト",
+    "nameEn": "miniloto",
+    "range": [1, 31],
+    "pickCount": 5,
+    "predictCount": 10,
+    "drawWeekdays": [2],
+    "color": "green",
+    "lastRound": 1402,
+    "lastDrawDate": "2026-09-01",
+    "note": "抽せん日は毎週火曜日。round番号は初期値のため、公式サイトの最新回号と一致しているか一度確認してください。"
+  }
+}

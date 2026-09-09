@@ -1,0 +1,59 @@
+<svg viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="抽せん球のイラスト">
+  <defs>
+    <style>
+      .float1 { animation: floaty 3.2s ease-in-out infinite; }
+      .float2 { animation: floaty 3.6s ease-in-out infinite; animation-delay: .4s; }
+      .float3 { animation: floaty 4s ease-in-out infinite; animation-delay: .8s; }
+      .float4 { animation: floaty 3.4s ease-in-out infinite; animation-delay: 1.1s; }
+      .float5 { animation: floaty 3.8s ease-in-out infinite; animation-delay: .2s; }
+      @keyframes floaty {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .float1,.float2,.float3,.float4,.float5 { animation: none; }
+      }
+      text { font-family: 'M PLUS Rounded 1c', sans-serif; font-weight: 800; fill: #ffffff; }
+    </style>
+  </defs>
+
+  <!-- 台座 -->
+  <ellipse cx="280" cy="235" rx="190" ry="14" fill="#D8F0F8"/>
+
+  <!-- 抽せんマシン本体 -->
+  <rect x="180" y="90" width="200" height="120" rx="60" fill="#ffffff" stroke="#14293D" stroke-width="3"/>
+  <circle cx="280" cy="150" r="72" fill="#F4FBFD" stroke="#14293D" stroke-width="3"/>
+
+  <!-- マシン内の小さい球 -->
+  <circle class="float3" cx="255" cy="130" r="10" fill="#7C5CBF"/>
+  <circle class="float1" cx="300" cy="120" r="8" fill="#F2994A"/>
+  <circle class="float4" cx="270" cy="170" r="9" fill="#2FAE66"/>
+  <circle class="float2" cx="305" cy="165" r="7" fill="#FFC93C"/>
+  <circle class="float5" cx="240" cy="165" r="6" fill="#7C5CBF"/>
+
+  <!-- 脚 -->
+  <rect x="255" y="205" width="10" height="24" rx="4" fill="#14293D"/>
+  <rect x="295" y="205" width="10" height="24" rx="4" fill="#14293D"/>
+
+  <!-- 周りを飛ぶ大きな数字ボール -->
+  <g class="float1">
+    <circle cx="80" cy="80" r="30" fill="#7C5CBF" stroke="#14293D" stroke-width="2.5"/>
+    <text x="80" y="89" font-size="26" text-anchor="middle">7</text>
+  </g>
+  <g class="float2">
+    <circle cx="470" cy="90" r="30" fill="#F2994A" stroke="#14293D" stroke-width="2.5"/>
+    <text x="470" y="99" font-size="26" text-anchor="middle">6</text>
+  </g>
+  <g class="float3">
+    <circle cx="120" cy="190" r="26" fill="#2FAE66" stroke="#14293D" stroke-width="2.5"/>
+    <text x="120" y="198" font-size="20" text-anchor="middle">5</text>
+  </g>
+  <g class="float4">
+    <circle cx="450" cy="185" r="22" fill="#FFC93C" stroke="#14293D" stroke-width="2.5"/>
+    <text x="450" y="192" font-size="18" text-anchor="middle" fill="#6B4C00">?</text>
+  </g>
+  <g class="float5">
+    <circle cx="500" cy="40" r="16" fill="#ffffff" stroke="#14293D" stroke-width="2"/>
+    <text x="500" y="46" font-size="14" text-anchor="middle" fill="#14293D">?</text>
+  </g>
+</svg>
