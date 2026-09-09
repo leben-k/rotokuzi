@@ -216,15 +216,20 @@ function renderHistory(cfg, data) {
 }
 
 // ===== 広告（楽天公式スニペットをそのまま挿入） =====
-async function renderAds() {
+async function renderAds(pageKey) {
   const winEl = document.getElementById("ads-win");
   const nowinEl = document.getElementById("ads-nowin");
   if (!winEl && !nowinEl) return;
 
   const data = await fetchJSON("data/ads.json");
-  const items = data.items || [];
+  const items = (data.items || []).filter((i) => i.page === pageKey);
 
-  const wrap = (item) => `<div class="ad-card-official">${item.html}</div>`;
+  const wrap = (item) => `
+    <div class="ad-card-official">
+      <span class="ad-badge">広告</span>
+      ${item.html}
+    </div>
+  `;
 
   const winItems = items.filter((i) => i.category === "win");
   const nowinItems = items.filter((i) => i.category === "nowin");
