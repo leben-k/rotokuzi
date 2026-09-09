@@ -215,17 +215,25 @@ a { color: inherit; }
   border-color: #b8860b;
   box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15), 0 0 0 4px rgba(255,201,60,0.4);
 }
-.ball.bonus-ball {
-  background: #ffffff;
-  border: 2.5px dashed var(--ink-soft);
-  color: var(--ink);
-}
 
 .page.loto7 { --accent: var(--loto7); --accent-soft: var(--loto7-soft); }
 .page.loto6 { --accent: var(--loto6); --accent-soft: var(--loto6-soft); }
 .page.miniloto { --accent: var(--mini); --accent-soft: var(--mini-soft); }
 .page .ball { background: var(--accent); }
 .page .ball.matched { background: var(--gold); color: var(--gold-ink); }
+.page .ball.bonus-ball,
+.ball.bonus-ball {
+  background: #ffffff;
+  border: 3px solid var(--ink);
+  color: var(--ink);
+  box-shadow: 0 2px 5px rgba(20,41,61,0.18);
+}
+.page .ball.bonus-ball.matched,
+.ball.bonus-ball.matched {
+  background: var(--gold);
+  border-color: #b8860b;
+  color: var(--gold-ink);
+}
 
 /* ---------- Prediction section ---------- */
 .section {

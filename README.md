@@ -11,6 +11,7 @@ loto7.html           ロト7の予測・履歴ページ
 loto6.html           ロト6の予測・履歴ページ
 miniloto.html        ミニロトの予測・履歴ページ
 contact.html         お問い合わせ（Googleフォーム埋め込み）
+privacy.html         プライバシーポリシー
 assets/              CSS・JS・SVGイラスト
 data/                予測・結果・広告データ（JSON）
 scripts/             予測生成・結果照合のPythonスクリプト

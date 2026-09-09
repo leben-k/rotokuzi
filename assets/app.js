@@ -151,10 +151,15 @@ async function renderActualHistory(key) {
           <span class="history-round">第${r.round}回</span>
           <span class="history-date">${formatDate(r.drawDate)}</span>
         </div>
+        <div class="history-row-label">本数字</div>
         <div class="ball-row">
           ${r.main.map((n) => ballHTML(n, { small: true })).join("")}
-          ${(r.bonus || []).map((n) => ballHTML(n, { small: true, bonus: true })).join("")}
         </div>
+        ${(r.bonus || []).length ? `
+        <div class="history-row-label">ボーナス数字</div>
+        <div class="ball-row">
+          ${r.bonus.map((n) => ballHTML(n, { small: true, bonus: true })).join("")}
+        </div>` : ""}
       </div>
     `
     )
@@ -189,11 +194,15 @@ function renderHistory(cfg, data) {
           ${p.numbers.map((n) => ballHTML(n, { small: true, matched: matchedSet.has(n) })).join("")}
         </div>
 
-        <div class="history-row-label">当せん番号</div>
+        <div class="history-row-label">当せん番号（本数字）</div>
         <div class="ball-row">
           ${r.mainNumbers.map((n) => ballHTML(n, { small: true })).join("")}
-          ${(r.bonusNumbers || []).map((n) => ballHTML(n, { small: true, bonus: true })).join("")}
         </div>
+        ${(r.bonusNumbers || []).length ? `
+        <div class="history-row-label">ボーナス数字</div>
+        <div class="ball-row">
+          ${r.bonusNumbers.map((n) => ballHTML(n, { small: true, bonus: true })).join("")}
+        </div>` : ""}
 
         <div class="match-summary ${hit ? "hit" : ""}">
           ${hit
