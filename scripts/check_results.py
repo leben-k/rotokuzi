@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 """
-みずほ銀行の公式サイトから当せん番号を取得し、該当回の予測と照合して
+楽天×宝くじの当せん番号案内ページから当せん番号を取得し、該当回の予測と照合して
 data/<loto>.json の result フィールドを埋めるスクリプト。
 GitHub Actions から各ロトの抽せん日の夜（21時頃）に実行される想定。
 
-みずほ銀行のページ構造は将来変更される可能性があるため、
+楽天×宝くじのページ構造は将来変更される可能性があるため、
 自動取得に失敗した場合は data/manual_results.json に手動で当せん番号を
 記入しておくことでも同じ処理が行えるようにしてある（そちらを優先的に読む）。
 
 manual_results.json の書式:
 {
   "loto7":    { "693": { "main": [2,8,12,19,24,36,37], "bonus": [17,27] } },
-  "loto6":    { "2135": { "main": [1,2,3,4,5,6] } },
+  "loto6":    { "2135": { "main": [1,2,3,4,5,6], "bonus": [41] } },
   "miniloto": { "1402": { "main": [1,2,3,4,5], "bonus": [6] } }
 }
 
@@ -37,10 +37,11 @@ DATA_DIR = ROOT / "data"
 CONFIG_PATH = DATA_DIR / "config.json"
 MANUAL_PATH = DATA_DIR / "manual_results.json"
 
-MIZUHO_URLS = {
-    "loto7": "https://www.mizuhobank.co.jp/retail/takarakuji/check/loto/loto7/index.html",
-    "loto6": "https://www.mizuhobank.co.jp/retail/takarakuji/check/loto/loto6/index.html",
-    "miniloto": "https://www.mizuhobank.co.jp/retail/takarakuji/check/loto/miniloto/index.html",
+# 楽天×宝くじ 当せん番号案内（当月分を掲載。過去分は backnumber/<slug>_past/ 配下）
+RAKUTEN_URLS = {
+    "loto7": "https://takarakuji.rakuten.co.jp/backnumber/loto7/",
+    "loto6": "https://takarakuji.rakuten.co.jp/backnumber/loto6/",
+    "miniloto": "https://takarakuji.rakuten.co.jp/backnumber/mini/",
 }
 
 
@@ -62,44 +63,57 @@ def load_manual_result(name, round_number):
     return entry
 
 
-def fetch_from_mizuho(name, round_number):
-    """みずほ銀行のバックナンバーページから該当回の当せん番号を取得する。
-    ページ構造が変わっている場合は None を返す（例外は握りつぶさずログだけ出す）。
+def fetch_from_rakuten(name, round_number, pick_count):
+    """楽天×宝くじの当せん番号案内ページから該当回の当せん番号を取得する。
+    ページ構造が変わっている、または該当回が当月分に掲載されていない場合は None を返す。
     """
     if requests is None:
         print("requests/bs4 がインストールされていません。pip install requests beautifulsoup4")
         return None
 
-    url = MIZUHO_URLS[name]
+    url = RAKUTEN_URLS[name]
     try:
         res = requests.get(url, timeout=15, headers={"User-Agent": "Mozilla/5.0"})
         res.raise_for_status()
     except Exception as e:
-        print(f"[{name}] みずほ銀行サイトの取得に失敗しました: {e}")
+        print(f"[{name}] 楽天×宝くじサイトの取得に失敗しました: {e}")
         return None
 
     soup = BeautifulSoup(res.text, "html.parser")
-    text = soup.get_text("\n")
+    # ページ内の表はテキスト化すると「回号」「第○○回」「抽せん日」「本数字」「6」「7」...
+    # 「ボーナス数字」「(42)」のように、ラベルと値が順番に並ぶ構造になっている。
+    lines = [l.strip() for l in soup.get_text("\n").split("\n") if l.strip()]
 
-    # 「第693回」のような回号表記を探し、その近辺の数字列を抽出する簡易パーサー。
-    # サイト構造が変わった場合は要調整。
-    pattern = re.compile(rf"第\s*{round_number}\s*回")
-    match = pattern.search(text)
-    if not match:
-        print(f"[{name}] 第{round_number}回の記載がページ内に見つかりませんでした。")
+    round_label = f"第{round_number}回"
+    try:
+        start = lines.index(round_label)
+    except ValueError:
+        print(f"[{name}] {round_label}の記載が当月ページ内に見つかりませんでした（月をまたいでいる可能性があります）。")
         return None
 
-    window = text[match.end(): match.end() + 400]
-    numbers = re.findall(r"\b(\d{1,2})\b", window)
-    numbers = [int(n) for n in numbers]
+    window = lines[start:start + 60]  # この回のブロック内だけを見る
 
-    if not numbers:
-        print(f"[{name}] 第{round_number}回付近から数字を抽出できませんでした。")
+    def collect_numbers_after(label, count):
+        if label not in window:
+            return None
+        idx = window.index(label)
+        numbers = []
+        for token in window[idx + 1: idx + 1 + count + 5]:
+            m = re.search(r"\d{1,2}", token)
+            if m:
+                numbers.append(int(m.group()))
+            if len(numbers) >= count:
+                break
+        return numbers if len(numbers) == count else None
+
+    main_numbers = collect_numbers_after("本数字", pick_count)
+    bonus_numbers = collect_numbers_after("ボーナス数字", 1) or []
+
+    if not main_numbers:
+        print(f"[{name}] {round_label}付近から本数字を正しく抽出できませんでした。")
         return None
 
-    # 本数字とボーナス数字の切り分けはロト種別ごとのpickCountに依存するため、
-    # 呼び出し側 (run_for_loto) で config を見て切り分ける。
-    return numbers
+    return main_numbers, bonus_numbers
 
 
 def run_for_loto(name, config):
@@ -119,12 +133,10 @@ def run_for_loto(name, config):
             main_numbers = manual.get("main", [])
             bonus_numbers = manual.get("bonus", [])
         else:
-            raw = fetch_from_mizuho(name, round_number)
-            if raw is None:
+            fetched = fetch_from_rakuten(name, round_number, cfg["pickCount"])
+            if fetched is None:
                 continue
-            pick_count = cfg["pickCount"]
-            main_numbers = raw[:pick_count]
-            bonus_numbers = raw[pick_count:pick_count + 2]
+            main_numbers, bonus_numbers = fetched
 
         if not main_numbers:
             continue
