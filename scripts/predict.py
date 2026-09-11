@@ -74,7 +74,14 @@ def run_for_loto(name, config):
     cfg = config[name]
     loto_data = load_loto_data(name)
 
-    draw_date = next_draw_date(cfg["drawWeekdays"])
+    # 次の抽せん日は「今日」と「前回抽せん日の翌日」の遅い方を起点に探す。
+    # これにより、前回分の結果が確定した直後でも「今日」を次回として
+    # 誤認識せず、正しく次の該当曜日まで進める。
+    today = datetime.now()
+    last_draw_date = datetime.fromisoformat(cfg["lastDrawDate"])
+    search_from = max(today, last_draw_date + timedelta(days=1))
+
+    draw_date = next_draw_date(cfg["drawWeekdays"], from_date=search_from)
     round_number = cfg["lastRound"] + 1
 
     if already_predicted(loto_data, round_number):
