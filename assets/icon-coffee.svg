@@ -1,0 +1,7 @@
+<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="コーヒーカップのアイコン">
+  <path d="M12 22 h30 v16 a15 15 0 0 1 -15 15 h0 a15 15 0 0 1 -15 -15 z" fill="#ffffff" stroke="#0d1e30" stroke-width="2.2"/>
+  <path d="M42 26 h5 a6 6 0 0 1 0 12 h-5" fill="none" stroke="#0d1e30" stroke-width="2.2"/>
+  <path d="M17 15 c2 -4 -2 -5 0 -9" fill="none" stroke="#274257" stroke-width="2" stroke-linecap="round"/>
+  <path d="M27 15 c2 -4 -2 -5 0 -9" fill="none" stroke="#274257" stroke-width="2" stroke-linecap="round"/>
+  <path d="M14 30 h26" stroke="#e0790f" stroke-width="3"/>
+</svg>

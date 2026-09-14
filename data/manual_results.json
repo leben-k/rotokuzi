@@ -1,0 +1,6 @@
+{
+  "_readme": "自動取得(scripts/check_results.py)が失敗した場合、ここに手動で当せん番号を記入すると優先的に使われます。使い終わったら削除してOKです。書式はREADME.mdを参照してください。",
+  "loto7": {},
+  "loto6": {},
+  "miniloto": {}
+}
